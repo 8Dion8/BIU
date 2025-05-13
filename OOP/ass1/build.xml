@@ -1,0 +1,64 @@
+<project default="compile">
+
+    <property name="src.dir" value="src" />
+    <property name="build.dir" value="bin" />
+    <property name="lib.dir" value="lib" />
+    <property name="classpath" value="${build.dir}:${lib.dir}/biuoop-1.4.jar" />
+
+    <target name="init">
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac
+            srcdir="${src.dir}"
+            destdir="${build.dir}"
+            includeantruntime="false"
+        >
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="run-gui-example" depends="compile">
+        <java
+            classname="SimpleGuiExample"
+            classpath="${classpath}"
+            fork="true"
+        />
+    </target>
+
+    <target name="run2" depends="compile">
+        <java
+            classname="AbstractArtDrawing"
+            classpath="${classpath}"
+            fork="true"
+        />
+    </target>
+
+    <target name="check">
+        <java jar="${lib.dir}/checkstyle-8.44-all.jar" fork="true">
+            <arg line="-c biuoop.xml" />
+            <arg line="${src.dir}" />
+        </java>
+    </target>
+
+    <target name="zip">
+        <zip destfile="ass1.zip">
+            <!-- Include the src directory -->
+            <zipfileset dir="${src.dir}" prefix="${src.dir}"/>
+            <!-- Include the lib directory -->
+            <zipfileset dir="${lib.dir}" prefix="${lib.dir}"/>
+            <!-- Include the build.xml file -->
+            <zipfileset file="build.xml"/>
+        </zip>
+    </target>
+
+</project>

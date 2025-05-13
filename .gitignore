@@ -1,0 +1,12 @@
+*.zip
+*.jar
+*.out
+**/biuoop.xml
+**/.vscode/
+**/.idea/
+**/.settings/
+**/.jdtls
+**/bin/
+**/lib/
+**/bin-tests/
+**/lib-tests/

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="TestBuild" default="run-tests" basedir=".">
+
+    <!-- Define properties -->
+    <property name="src.dir" value="src"/>
+    <property name="test.dir" value="tests"/>
+    <property name="bin.dir" value="bin-tests"/>
+    <property name="lib.dir" value="lib-tests"/>
+
+    <!-- Ensure bin-tests directory exists -->
+    <target name="init">
+        <mkdir dir="${bin.dir}"/>
+    </target>
+
+    <!-- Compile source files -->
+    <target name="compile-src" depends="init">
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+            <classpath>
+                <pathelement path="${bin.dir}"/>
+                <file name="biuoop-1.4.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Compile test files -->
+    <target name="compile-test" depends="compile-src">
+        <javac srcdir="${test.dir}" destdir="${bin.dir}" includeantruntime="false">
+            <classpath>
+                <pathelement path="${bin.dir}"/>
+                <file name="biuoop-1.4.jar"/>
+                <fileset dir="${lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Run the tests -->
+    <target name="run-tests" depends="compile-test">
+        <java classname="MainTest" fork="true">
+            <classpath>
+                <pathelement path="${bin.dir}"/>
+                <fileset dir="${lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </java>
+        <antcall target="clean"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="bin-tests"/>
+    </target>
+
+</project>
