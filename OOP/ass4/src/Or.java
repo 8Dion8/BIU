@@ -1,17 +1,12 @@
 import java.util.Map;
 
 public class Or extends BinaryExpression {
-
-    public Expression baseExpression1;
-    public Expression baseExpression2;
-
-    public Or(Expression expression1, Expression expression2) {
-        this.baseExpression1 = expression1;
-        this.baseExpression2 = expression2;
+    public Or(Expression leftExpr, Expression rightExpr) {
+        super(leftExpr, rightExpr);
     }
 
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return this.baseExpression1.evaluate(assignment) || this.baseExpression2.evaluate(assignment);
+        return super.getLeft().evaluate(assignment) || super.getRight().evaluate(assignment);
     }
 
     public String toString() {
@@ -19,6 +14,6 @@ public class Or extends BinaryExpression {
     }
 
     public Expression assign(String var, Expression expression) {
-        return new Or(this.baseExpression1.assign(var, expression), this.baseExpression2.assign(var, expression));
+        return new Or(super.getLeft().assign(var, expression), super.getRight().assign(var, expression));
     }
 }

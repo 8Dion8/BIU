@@ -1,17 +1,12 @@
 import java.util.Map;
 
 public class And extends BinaryExpression {
-
-    public Expression baseExpression1;
-    public Expression baseExpression2;
-
-    public And(Expression expression1, Expression expression2) {
-        this.baseExpression1 = expression1;
-        this.baseExpression2 = expression2;
+    public And(Expression leftExpr, Expression rightExpr) {
+        super(leftExpr, rightExpr);
     }
 
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
-        return this.baseExpression1.evaluate(assignment) && this.baseExpression2.evaluate(assignment);
+        return super.getLeft().evaluate(assignment) && super.getRight().evaluate(assignment);
     }
 
     public String toString() {
@@ -19,6 +14,6 @@ public class And extends BinaryExpression {
     }
 
     public Expression assign(String var, Expression expression) {
-        return new And(this.baseExpression1.assign(var, expression), this.baseExpression2.assign(var, expression));
+        return new And(super.getLeft().assign(var, expression), super.getRight().assign(var, expression));
     }
 }

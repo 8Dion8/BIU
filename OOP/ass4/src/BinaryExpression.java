@@ -2,16 +2,21 @@ import java.util.TreeMap;
 import java.util.List;
 
 abstract public class BinaryExpression implements Expression {
-    public Expression baseExpression1;
-    public Expression baseExpression2;
+    public Expression leftExpr;
+    public Expression rightExpr;
+
+    public BinaryExpression(Expression leftExpr, Expression rightExpr) {
+        this.leftExpr = leftExpr;
+        this.rightExpr = rightExpr;
+    }
 
     public Boolean evaluate() throws Exception {
         return this.evaluate(new TreeMap<String, Boolean>());
     }
 
     public List<String> getVariables() {
-        List<String> variables1 = this.baseExpression1.getVariables();
-        List<String> variables2 = this.baseExpression2.getVariables();
+        List<String> variables1 = this.leftExpr.getVariables();
+        List<String> variables2 = this.rightExpr.getVariables();
         for (String var: variables2) {
             if (!variables1.contains(var)) {
                 variables1.add(var);
@@ -20,7 +25,15 @@ abstract public class BinaryExpression implements Expression {
         return variables1;
     }
 
+    public Expression getLeft() {
+        return this.leftExpr;
+    }
+
+    public Expression getRight() {
+        return this.rightExpr;
+    }
+
     public String toString(String representation) {
-        return "(" + this.baseExpression1.toString() + representation + this.baseExpression2.toString() + ")";
+        return "(" + this.leftExpr.toString() + representation + this.rightExpr.toString() + ")";
     }
 }
