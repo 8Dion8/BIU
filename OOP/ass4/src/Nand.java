@@ -17,4 +17,23 @@ public class Nand extends BinaryExpression {
     public Expression assign(String var, Expression expression) {
         return new Nand(super.getLeft().assign(var, expression), super.getRight().assign(var, expression));
     }
+
+    public Expression nandify() {
+        return this;
+    }
+
+    public Expression norify() {
+        Expression a = super.getLeft().norify();
+        Expression b = super.getRight().norify();
+        return new Nor(
+            new Nor(
+                new Nor(a, a),
+                new Nor(b, b)
+            ),
+            new Nor(
+                new Nor(a, a),
+                new Nor(b, b)
+            )
+        );
+    }
 }

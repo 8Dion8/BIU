@@ -16,4 +16,23 @@ public class Nor extends BinaryExpression {
     public Expression assign(String var, Expression expression) {
         return new Nor(super.getLeft().assign(var, expression), super.getRight().assign(var, expression));
     }
+
+    public Expression nandify() {
+        Expression a = super.getLeft().nandify();
+        Expression b = super.getRight().nandify();
+        return new Nand(
+            new Nand(
+                new Nand(a, a),
+                new Nand(b, b)
+            ),
+            new Nand(
+                new Nand(a, a),
+                new Nand(b, b)
+            )
+        );
+    }
+
+    public Expression norify() {
+        return this;
+    }
 }

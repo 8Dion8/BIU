@@ -16,4 +16,31 @@ public class Xor extends BinaryExpression {
     public Expression assign(String var, Expression expression) {
         return new Xor(super.getLeft().assign(var, expression), super.getRight().assign(var, expression));
     }
+
+    public Expression nandify() {
+        Expression a = super.getLeft().nandify();
+        Expression b = super.getRight().nandify();
+        return new Nand(
+            new Nand(
+                a,
+                new Nand(a, b)
+            ),
+            new Nand(
+                b,
+                new Nand(a, b)
+            )
+        );
+    }
+
+    public Expression norify() {
+        Expression a = super.getLeft().norify();
+        Expression b = super.getRight().norify();
+        return new Nor(
+            new Nor(
+                new Nor(a, a),
+                new Nor(b, b)
+            ),
+            new Nor(a, b)
+        );
+    }
 }

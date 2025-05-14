@@ -39,6 +39,10 @@
         <java classname="Test1" classpath="${classpath}" fork="true"/>
     </target>
 
+    <target name="test2" depends="compile">
+        <java classname="Test2" classpath="${classpath}" fork="true"/>
+    </target>
+
     <target name="run" depends="compile">
         <java classname="Game" classpath="${classpath}" fork="true"/>
     </target>

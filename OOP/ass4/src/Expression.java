@@ -22,4 +22,8 @@ public interface Expression {
    // var are replaced with the provided expression (Does not modify the
    // current expression).
    Expression assign(String var, Expression expression);
+
+   Expression nandify();
+
+   Expression norify();
 }

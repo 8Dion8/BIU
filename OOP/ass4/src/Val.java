@@ -33,4 +33,12 @@ public class Val implements Expression {
     public Expression assign(String var, Expression expression) {
         return this;
     }
+
+    public Expression nandify() {
+        return this;
+    }
+
+    public Expression norify() {
+        return this;
+    }
 }

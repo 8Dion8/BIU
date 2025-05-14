@@ -40,4 +40,12 @@ public class Var implements Expression {
             return this;
         }
     }
+
+        public Expression nandify() {
+            return this;
+        }
+
+        public Expression norify() {
+            return this;
+        }
 }
