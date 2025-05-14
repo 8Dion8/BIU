@@ -35,20 +35,8 @@
         </java>
     </target>
 
-    <target name="test1" depends="compile">
-        <java classname="Test1" classpath="${classpath}" fork="true"/>
-    </target>
-
-    <target name="test2" depends="compile">
-        <java classname="Test2" classpath="${classpath}" fork="true"/>
-    </target>
-
-    <target name="test3" depends="compile">
-        <java classname="Test3" classpath="${classpath}" fork="true"/>
-    </target>
-
-    <target name="test4" depends="compile">
-        <java classname="Test4" classpath="${classpath}" fork="true"/>
+    <target name="test" depends="compile">
+        <java classname="ExpressionsTest" classpath="${classpath}" fork="true"/>
     </target>
 
     <target name="run" depends="compile">
