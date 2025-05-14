@@ -1,17 +1,12 @@
-import java.util.TreeMap;
 import java.util.List;
 
-abstract public class BinaryExpression implements Expression {
+abstract public class BinaryExpression extends BaseExpression {
     public Expression leftExpr;
     public Expression rightExpr;
 
     public BinaryExpression(Expression leftExpr, Expression rightExpr) {
         this.leftExpr = leftExpr;
         this.rightExpr = rightExpr;
-    }
-
-    public Boolean evaluate() throws Exception {
-        return this.evaluate(new TreeMap<String, Boolean>());
     }
 
     public List<String> getVariables() {

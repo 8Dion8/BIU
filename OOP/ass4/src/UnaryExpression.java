@@ -1,9 +1,6 @@
-import java.util.Map;
-import java.util.TreeMap;
 import java.util.List;
-import java.util.ArrayList;
 
-public abstract class UnaryExpression implements Expression {
+public abstract class UnaryExpression extends BaseExpression {
     private Expression expr;
 
     public UnaryExpression(Expression expr) {
@@ -12,10 +9,6 @@ public abstract class UnaryExpression implements Expression {
 
     public Expression getExpr() {
         return this.expr;
-    }
-
-    public Boolean evaluate() throws Exception {
-        return this.evaluate(new TreeMap<String, Boolean>());
     }
 
     public List<String> getVariables() {
