@@ -23,7 +23,12 @@ public interface Expression {
    // current expression).
    Expression assign(String var, Expression expression);
 
+   Boolean equals(Expression expr);
+
    Expression nandify();
 
    Expression norify();
+
+   //Expression simplify();
+
 }

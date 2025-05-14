@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 abstract public class BinaryExpression extends BaseExpression {
@@ -12,12 +13,7 @@ abstract public class BinaryExpression extends BaseExpression {
     public List<String> getVariables() {
         List<String> variables1 = this.leftExpr.getVariables();
         List<String> variables2 = this.rightExpr.getVariables();
-        for (String var: variables2) {
-            if (!variables1.contains(var)) {
-                variables1.add(var);
-            }
-        }
-        return variables1;
+        return Common.merge(variables1, variables2);
     }
 
     public Expression getLeft() {

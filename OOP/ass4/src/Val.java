@@ -10,6 +10,10 @@ public class Val implements Expression {
         this.value = value;
     }
 
+    public Boolean equals(Expression expr) {
+        return this.toString() == expr.toString();
+    }
+
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
         return this.value;
     }

@@ -11,6 +11,10 @@ public class Var implements Expression {
         this.variable = variable;
     }
 
+    public Boolean equals(Expression expr) {
+        return this.toString() == expr.toString();
+    }
+
     public Boolean evaluate(Map<String, Boolean> assignment) throws Exception {
         if (assignment.keySet().contains(this.variable)) {
             return assignment.get(this.variable);
