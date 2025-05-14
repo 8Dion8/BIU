@@ -35,4 +35,31 @@ public class Nor extends BinaryExpression {
     public Expression norify() {
         return this;
     }
+
+    public Expression simplify() {
+        Expression simpleLeft = super.getLeft().simplify();
+        Expression simpleRight = super.getRight().simplify();
+
+        try {
+            return new Val(new Nor(simpleLeft, simpleRight).evaluate());
+        } catch (Exception e) {}
+
+        Expression falseV = new Val(false);
+        Expression trueV = new Val(true);
+
+        if (simpleLeft.equals(trueV) || simpleRight.equals(trueV)) {
+            return falseV;
+        }
+        if (simpleLeft.equals(falseV)) {
+            return new Not(simpleRight);
+        }
+        if (simpleRight.equals(falseV)) {
+            return new Not(simpleLeft);
+        }
+        if (simpleLeft.equals(simpleRight)) {
+            return new Not(simpleLeft);
+        }
+
+        return new Nand(simpleLeft, simpleRight);
+    }
 }

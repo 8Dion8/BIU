@@ -34,4 +34,31 @@ public class Or extends BinaryExpression {
             new Nor(a, b)
         );
     }
+
+    public Expression simplify() {
+        Expression simpleLeft = super.getLeft().simplify();
+        Expression simpleRight = super.getRight().simplify();
+
+        try {
+            return new Val(new Or(simpleLeft, simpleRight).evaluate());
+        } catch (Exception e) {}
+
+        Expression falseV = new Val(false);
+        Expression trueV = new Val(true);
+
+        if (simpleLeft.equals(falseV)) {
+            return simpleRight;
+        }
+        if (simpleRight.equals(falseV)) {
+            return simpleLeft;
+        }
+        if (simpleLeft.equals(trueV) || simpleRight.equals(trueV)) {
+            return trueV;
+        }
+        if (simpleLeft.equals(simpleRight)) {
+            return simpleLeft;
+        }
+
+        return new Or(simpleLeft, simpleRight);
+    }
 }

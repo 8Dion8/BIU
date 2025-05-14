@@ -45,4 +45,8 @@ public class Val implements Expression {
     public Expression norify() {
         return this;
     }
+
+    public Expression simplify() {
+        return this;
+    }
 }

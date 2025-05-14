@@ -24,4 +24,14 @@ public class Not extends UnaryExpression {
     public Expression norify() {
         return new Nor(super.getExpr().norify(), super.getExpr().norify());
     }
+
+    public Expression simplify() {
+        Expression simpleExpr = super.getExpr().simplify();
+
+        try {
+            return new Val(new Not(simpleExpr).evaluate());
+        } catch (Exception e) {}
+
+        return new Not(simpleExpr);
+    }
 }

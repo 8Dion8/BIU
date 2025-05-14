@@ -29,6 +29,6 @@ public interface Expression {
 
    Expression norify();
 
-   //Expression simplify();
+   Expression simplify();
 
 }

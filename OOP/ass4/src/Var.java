@@ -45,11 +45,15 @@ public class Var implements Expression {
         }
     }
 
-        public Expression nandify() {
-            return this;
-        }
+    public Expression nandify() {
+        return this;
+    }
 
-        public Expression norify() {
-            return this;
-        }
+    public Expression norify() {
+        return this;
+    }
+
+    public Expression simplify() {
+        return this;
+    }
 }

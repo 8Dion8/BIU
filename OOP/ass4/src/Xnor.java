@@ -43,4 +43,19 @@ public class Xnor extends BinaryExpression {
             )
         );
     }
+
+    public Expression simplify() {
+        Expression simpleLeft = super.getLeft().simplify();
+        Expression simpleRight = super.getRight().simplify();
+
+        try {
+            return new Val(new Xnor(simpleLeft, simpleRight).evaluate());
+        } catch (Exception e) {}
+
+        if (simpleLeft.equals(simpleRight)) {
+            return new Val(true);
+        }
+
+        return new Xnor(simpleLeft, simpleRight);
+    }
 }

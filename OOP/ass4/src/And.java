@@ -34,4 +34,31 @@ public class And extends BinaryExpression {
             new Nor(b, b)
         );
     }
+
+    public Expression simplify() {
+        Expression simpleLeft = super.getLeft().simplify();
+        Expression simpleRight = super.getRight().simplify();
+
+        try {
+            return new Val(new And(simpleLeft, simpleRight).evaluate());
+        } catch (Exception e) {}
+
+        Expression falseV = new Val(false);
+        Expression trueV = new Val(true);
+
+        if (simpleLeft.equals(trueV)) {
+            return simpleRight;
+        }
+        if (simpleRight.equals(trueV)) {
+            return simpleLeft;
+        }
+        if (simpleLeft.equals(falseV) || simpleRight.equals(falseV)) {
+            return falseV;
+        }
+        if (simpleLeft.equals(simpleRight)) {
+            return simpleLeft;
+        }
+
+        return new And(simpleLeft, simpleRight);
+    }
 }
