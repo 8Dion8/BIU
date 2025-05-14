@@ -28,6 +28,8 @@ public class Not extends UnaryExpression {
     public Expression simplify() {
         Expression simpleExpr = super.getExpr().simplify();
 
+        // try evaluating without variables
+        // this will only not error if the whole expression consists of constants (T/F)
         try {
             return new Val(new Not(simpleExpr).evaluate());
         } catch (Exception e) {}

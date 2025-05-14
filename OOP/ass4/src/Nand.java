@@ -41,6 +41,8 @@ public class Nand extends BinaryExpression {
         Expression simpleLeft = super.getLeft().simplify();
         Expression simpleRight = super.getRight().simplify();
 
+        // try evaluating without variables
+        // this will only not error if the whole expression consists of constants (T/F)
         try {
             return new Val(new Nand(simpleLeft, simpleRight).evaluate());
         } catch (Exception e) {}
