@@ -1,3 +1,5 @@
+package gameObjects;
+
 import biuoop.KeyboardSensor;
 import java.awt.Color;
 import biuoop.DrawSurface;

@@ -94,6 +94,11 @@ public class Game {
        this.sprites.addSprite(s);
    }
 
+
+    void removeCollidable(Collidable c) {
+        this.environment.removeCollidable(c);
+    }
+
    /**
     * Add a sprite to the game.
     * If the sprite is a ball, add it to the sprite collection.

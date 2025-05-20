@@ -1,3 +1,5 @@
+package gameCollision;
+
 /**
  * Represents a collidable object in the game.
  * @author Gleb Shvartser 346832892

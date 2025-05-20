@@ -24,6 +24,10 @@ public class GameEnvironment {
         this.collidables.add(c);
     }
 
+    public void removeCollidable(Collidable c) {
+        this.collidables.remove(c);
+    }
+
     /**
      * Finds the closest collision between the trajectory and the collidables in the environment.
      *
