@@ -42,14 +42,14 @@ public class Game {
    private static final int BALL_STARTING_X = SCREEN_WIDTH / 2;
    private static final int BALL_STARTING_Y = SCREEN_HEIGHT - 250;
    private static final int BALL_RADIUS = 5;
-   private static final int BALL_STARTING_SPEED_X = 5;
-   private static final int BALL_STARTING_SPEED_Y = -5;
+   private static final int BALL_STARTING_SPEED_X = 3;
+   private static final int BALL_STARTING_SPEED_Y = -3;
 
    private static final int PADDLE_STARTING_X = SCREEN_WIDTH / 2;
    private static final int PADDLE_STARTING_Y = SCREEN_HEIGHT - 200;
    private static final int PADDLE_WIDTH = 100;
    private static final int PADDLE_HEIGHT = 20;
-   private static final int PADDLE_SPEED = 10;
+   private static final int PADDLE_SPEED = 5;
    private static final int PADDLE_LEFT_CONSTRAINT = WALL_THICKNESS;
    private static final int PADDLE_RIGHT_CONSTRAINT = SCREEN_WIDTH - WALL_THICKNESS - PADDLE_WIDTH;
 
