@@ -1,5 +1,3 @@
-package gameObjects;
-
 import biuoop.DrawSurface;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,6 +22,10 @@ public class SpriteCollection {
      */
     public void addSprite(Sprite s) {
         this.collection.add(s);
+    }
+
+    public void removeSprite(Sprite s) {
+        this.collection.remove(s);
     }
 
     /**

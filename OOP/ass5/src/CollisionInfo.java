@@ -1,5 +1,3 @@
-package gameCollision;
-
 /**
  * Represents information about a collision between a ball and a collidable object.
  * @author Gleb Shvartser 346832892

@@ -1,5 +1,3 @@
-package gameObjects;
-
 import biuoop.KeyboardSensor;
 import java.awt.Color;
 import biuoop.DrawSurface;
@@ -131,7 +129,7 @@ public class Paddle implements Sprite, Collidable {
     * @param currentVelocity The current velocity of the ball.
     * @return The new velocity of the ball after the collision.
     */
-   public Velocity hit(Point collisionPoint, Velocity currentVelocity) {
+   public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {
         Rectangle segmentCollidedWith = null;
         int segmentCollidedWithIndex = -1;
         for (int i = 0; i < collisionSegments.length; i++) {

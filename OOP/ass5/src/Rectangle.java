@@ -1,5 +1,3 @@
-package geometryPrimitive;
-
 /**
  * Represents a rectangle with a location and width/height.
  * @author Gleb Shvartser 346832892

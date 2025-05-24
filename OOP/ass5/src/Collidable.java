@@ -1,5 +1,3 @@
-package gameCollision;
-
 /**
  * Represents a collidable object in the game.
  * @author Gleb Shvartser 346832892
@@ -21,5 +19,5 @@ public interface Collidable {
     * @return the new velocity expected after the hit, based on the force
     *         the object inflicted during the collision
     */
-    Velocity hit(Point collisionPoint, Velocity currentVelocity);
+    Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity);
 }

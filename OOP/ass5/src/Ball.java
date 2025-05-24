@@ -1,5 +1,3 @@
-package gameObjects;
-
 import biuoop.DrawSurface;
 
 
@@ -133,7 +131,7 @@ public class Ball implements Sprite {
         if (collision != null) {
             //calculate new velocity and where we need to offset the ball
             Line collisionLine = collision.collisionObject().getCollisionRectangle().getClosestEdge(trajectory);
-            this.vel = collision.collisionObject().hit(collision.collisionPoint(), this.getVelocity());
+            this.vel = collision.collisionObject().hit(this, collision.collisionPoint(), this.getVelocity());
             this.center = collision.collisionPoint();
             //move ball slightly away from the border we collided with
             if (collisionLine.isHorizontal()) {
