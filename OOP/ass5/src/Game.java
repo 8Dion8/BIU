@@ -17,6 +17,7 @@ public class Game {
    private Ball ball2;
    private Ball ball3;
    private Paddle paddle;
+   private ScoreIndicator scoreIndicator;
    private Counter ballCounter;
    private Counter blockCounter;
    private Counter scoreCounter;
@@ -31,10 +32,12 @@ public class Game {
    private static final int BLOCKS_ROWS = 5;
    private static final int TOP_BLOCK_ROW_BLOCK_COUNT = 12;
 
+   private static final int SCORE_HEIGHT = 20;
+
    private static final int WALL_THICKNESS = 10;
-   private static final int[] LEFT_WALL_DATA = {0, 0, WALL_THICKNESS, SCREEN_HEIGHT};
-   private static final int[] RIGHT_WALL_DATA = {SCREEN_WIDTH - WALL_THICKNESS, 0, WALL_THICKNESS, SCREEN_HEIGHT};
-   private static final int[] TOP_WALL_DATA = {0, 0, SCREEN_WIDTH, WALL_THICKNESS};
+   private static final int[] LEFT_WALL_DATA = {0, SCORE_HEIGHT, WALL_THICKNESS, SCREEN_HEIGHT};
+   private static final int[] RIGHT_WALL_DATA = {SCREEN_WIDTH - WALL_THICKNESS, SCORE_HEIGHT, WALL_THICKNESS, SCREEN_HEIGHT};
+   private static final int[] TOP_WALL_DATA = {0, SCORE_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS};
    private static final int[] BOTTOM_WALL_DATA = {0, SCREEN_HEIGHT - WALL_THICKNESS, SCREEN_WIDTH, WALL_THICKNESS};
 
    private static final int GENERIC_BLOCK_WIDTH = 40;
@@ -60,6 +63,8 @@ public class Game {
 
    private static final Color BACKGROUND_COLOR = ColorschemeNord.DARK0;
    private static final Color WALL_COLOR = ColorschemeNord.DARK1;
+   private static final Color SCORE_BG_COLOR = ColorschemeNord.LIGHT2;
+   private static final Color SCORE_TEXT_COLOR = ColorschemeNord.DARK0;
    private static final Color PADDLE_COLOR = ColorschemeNord.LIGHT0;
    private static final Color BALL_COLOR = ColorschemeNord.ACCENT0;
    private static final Color BLOCK_BORDER_COLOR = ColorschemeNord.DARK1;
@@ -119,6 +124,14 @@ public class Game {
        this.scoreCounter = new Counter();
 
        this.scoreListener = new ScoreTrackingListener(scoreCounter);
+       this.scoreIndicator = new ScoreIndicator(
+           this.scoreCounter,
+           SCORE_HEIGHT,
+           SCREEN_WIDTH,
+           SCORE_BG_COLOR,
+           SCORE_TEXT_COLOR
+       );
+       this.scoreIndicator.addToGame(this);
 
        this.gui = new GUI("Arkanoid but the budget got cut halfway through", SCREEN_WIDTH, SCREEN_HEIGHT);
        this.keyboard = gui.getKeyboardSensor();
@@ -213,12 +226,12 @@ public class Game {
 
             if (this.blockCounter.getValue() == 0) {
                 this.scoreCounter.increase(100);
-                System.out.println("GOTY 2025 candidate, seeking investors");
+                System.out.println("You Win!\nYour score is: " + this.scoreCounter.getValue());
                 this.gui.close();
             }
 
             if (this.ballCounter.getValue() == 0) {
-                System.out.println("Skill issue");
+                System.out.println("Game Over.\nYour score is: " + this.scoreCounter.getValue());
                 this.gui.close();
             }
 
