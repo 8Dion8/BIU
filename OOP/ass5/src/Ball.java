@@ -80,7 +80,7 @@ public class Ball implements Sprite {
 
     /**
      * Sets the color of the ball.
-     * @param the color of the ball.
+     * @param color the color of the ball.
      */
     public void setColor(java.awt.Color color) {
         this.color = color;
@@ -171,6 +171,10 @@ public class Ball implements Sprite {
      */
     public void addToGame(Game game) {
         game.addSprite(this);
+    }
+
+    public void removeFromGame(Game game) {
+        game.removeSprite(this);
     }
 
     // Velocity Flipping

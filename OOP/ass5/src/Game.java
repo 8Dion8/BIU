@@ -15,9 +15,12 @@ public class Game {
    private KeyboardSensor keyboard;
    private Ball ball1;
    private Ball ball2;
+   private Ball ball3;
    private Paddle paddle;
+   private Counter ballCounter;
    private Counter blockCounter;
-   private HitListener listener;
+   private HitListener ballListener;
+   private HitListener blockListener;
 
 
    private static final int SCREEN_WIDTH = 800;
@@ -77,6 +80,7 @@ public class Game {
        this.environment = new GameEnvironment();
        this.sleeper = new Sleeper();
        this.blockCounter = new Counter();
+       this.ballCounter = new Counter();
    }
 
    /**
@@ -106,26 +110,6 @@ public class Game {
     }
 
    /**
-    * Add a sprite to the game.
-    * If the sprite is a ball, add it to the sprite collection.
-    * If the sprite is a block, add it to the sprite collection and the game environment.
-    * If the sprite is a paddle, add it to the sprite collection and the game environment.
-    *
-    * @param s The sprite to add to the game.
-    */
-   public void addToGame(Sprite s) {
-       if (s instanceof Ball) {
-           this.addSprite((Ball) s);
-       } else if (s instanceof Block) {
-           this.addSprite((Block) s);
-           this.addCollidable((Block) s);
-       } else if (s instanceof Paddle) {
-           this.addSprite((Paddle) s);
-           this.addCollidable((Paddle) s);
-       }
-   }
-
-   /**
     * Initialize a new game: create the Blocks and Ball (and Paddle)
     * and add them to the game.
     */
@@ -142,6 +126,7 @@ public class Game {
        );
        this.ball1.setVelocity(BALL_STARTING_SPEED_X, BALL_STARTING_SPEED_Y);
        this.ball1.addToGame(this);
+       this.ballCounter.increase(1);
 
        this.ball2 = new Ball(
            BALL_STARTING_X,
@@ -152,6 +137,18 @@ public class Game {
        );
        this.ball2.setVelocity(-BALL_STARTING_SPEED_X, BALL_STARTING_SPEED_Y);
        this.ball2.addToGame(this);
+       this.ballCounter.increase(1);
+
+       this.ball3 = new Ball(
+           BALL_STARTING_X,
+           BALL_STARTING_Y,
+           BALL_RADIUS,
+           BALL_COLOR,
+           this.environment
+       );
+       this.ball3.setVelocity(0, BALL_STARTING_SPEED_Y);
+       this.ball3.addToGame(this);
+       this.ballCounter.increase(1);
 
        this.paddle = new Paddle(
            this.keyboard,
@@ -168,9 +165,14 @@ public class Game {
        new Block(LEFT_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
        new Block(RIGHT_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
        new Block(TOP_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
-       new Block(BOTTOM_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
 
-       this.listener = new BlockRemover(this, this.blockCounter);
+       this.ballListener = new BallRemover(this, this.ballCounter);
+
+       Block deathRegion = new Block(BOTTOM_WALL_DATA, WALL_COLOR, WALL_COLOR);
+       deathRegion.addHitListener(this.ballListener);
+       deathRegion.addToGame(this);
+
+       this.blockListener = new BlockRemover(this, this.blockCounter);
 
        for (int i = 0; i < BLOCKS_ROWS; i++) {
            for (int j = i; j < TOP_BLOCK_ROW_BLOCK_COUNT; j++) {
@@ -181,7 +183,7 @@ public class Game {
                    BLOCK_COLORS[i],
                    BLOCK_BORDER_COLOR
                );
-               block.addHitListener(this.listener);
+               block.addHitListener(this.blockListener);
                block.addToGame(this);
                this.blockCounter.increase(1);
            }
@@ -204,6 +206,11 @@ public class Game {
 
             if (this.blockCounter.getValue() == 0) {
                 System.out.println("GOTY 2025 candidate, seeking investors");
+                this.gui.close();
+            }
+
+            if (this.ballCounter.getValue() == 0) {
+                System.out.println("Skill issue");
                 this.gui.close();
             }
 
