@@ -1,8 +1,5 @@
 package sprites;
 
-import java.awt.Color;
-import java.util.ArrayList;
-
 import collision.Collidable;
 import core.Game;
 import listeners.HitListener;
@@ -11,7 +8,10 @@ import primitive.Line;
 import primitive.Point;
 import primitive.Rectangle;
 import primitive.Velocity;
+
 import biuoop.DrawSurface;
+import java.awt.Color;
+import java.util.ArrayList;
 
 /**
  * A class representing a block in a game.
@@ -75,28 +75,21 @@ public class Block implements Collidable, Sprite, HitNotifier {
         this.hitListeners = new ArrayList<HitListener>();
     }
 
-    /**
-    * Return the "collision shape" of the object.
-    *
-    * @return the collision rectangle of the block
-    */
+    @Override
     public Rectangle getCollisionRectangle() {
         return rectangle;
     }
 
+    /**
+    * Returns the Block's Color.
+    *
+    * @return the color
+    */
     public Color getColor() {
         return this.color;
     }
 
-    /**
-    * Notify the object that a collision occurred at the specified collision point with
-    * a given velocity. This method calculates and returns the new velocity expected
-    * after the collision, based on the force the object inflicted.
-    *
-    * @param collisionPoint the point at which the collision occurred
-    * @param currentVelocity the velocity of the object before the collision
-    * @return the new velocity of the object after the collision
-    */
+    @Override
     public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {
         if (!ballColorMatch(hitter)) {
             this.notifyHit(hitter);
@@ -117,24 +110,23 @@ public class Block implements Collidable, Sprite, HitNotifier {
         return newVelocity;
     }
 
+    /**
+    * Checks if the ball's color matches the block's color.
+    *
+    * @param ball the ball to check
+    * @return true if the ball's color matches the block's color, false otherwise
+    */
     public boolean ballColorMatch(Ball ball) {
         return ball.getColor() == this.color;
     }
 
-    /**
-    * ok but WHY do we need a javadoc here? I refuse.
-    */
+    @Override
     public void timePassed() {
         // No action needed for this block
     }
 
-    /**
-    * Draw the block on the given surface.
-    *
-    * @param surface the surface to draw the block on
-    */
+    @Override
     public void drawOn(DrawSurface surface) {
-
         surface.setColor(this.borderColor);
         surface.fillRectangle(
             (int) this.rectangle.getUpperLeft().getX(),
@@ -150,25 +142,24 @@ public class Block implements Collidable, Sprite, HitNotifier {
             (int) this.rectangle.getHeight() - 2 * BORDER_WIDTH);
     }
 
-    /**
-    * Add the block to the game.
-    *
-    * @param game the game to add the block to
-    */
+    @Override
     public void addToGame(Game game) {
         game.addCollidable(this);
         game.addSprite(this);
     }
 
+    @Override
     public void removeFromGame(Game game) {
         game.removeCollidable(this);
         game.removeSprite(this);
     }
 
+    @Override
     public void addHitListener(HitListener hl) {
         this.hitListeners.add(hl);
     }
 
+    @Override
     public void removeHitListener(HitListener hl) {
         this.hitListeners.remove(hl);
     }

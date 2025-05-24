@@ -1,4 +1,5 @@
 package sprites;
+
 import biuoop.DrawSurface;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,10 @@ public class SpriteCollection {
         this.collection.add(s);
     }
 
+    /**
+     * Removes a sprite from the collection.
+     * @param s the sprite to remove
+     */
     public void removeSprite(Sprite s) {
         this.collection.remove(s);
     }

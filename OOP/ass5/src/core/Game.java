@@ -1,27 +1,29 @@
 package core;
 
+import collision.Collidable;
+import listeners.BlockRemover;
+import listeners.BallRemover;
+import listeners.HitListener;
+import listeners.ScoreTrackingListener;
+import primitive.Counter;
+import primitive.Rectangle;
+import sprites.Ball;
+import sprites.Block;
+import sprites.Paddle;
+import sprites.ScoreIndicator;
+import sprites.Sprite;
+import sprites.SpriteCollection;
+
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 import biuoop.KeyboardSensor;
 import java.awt.Color;
 
-import collision.Collidable;
-import listeners.HitListener;
-import listeners.ScoreTrackingListener;
-import primitive.Counter;
-import primitive.Rectangle;
-import sprites.Ball;
-import listeners.BallRemover;
-import sprites.Block;
-import listeners.BlockRemover;
-import sprites.Paddle;
-import sprites.ScoreIndicator;
-import sprites.Sprite;
-import sprites.SpriteCollection;
 
 /**
  * Game class represents the game.
+ * @author Gleb Shvartser 346832892
  */
 public class Game {
    private SpriteCollection sprites;
@@ -52,9 +54,11 @@ public class Game {
 
    private static final int WALL_THICKNESS = 10;
    private static final int[] LEFT_WALL_DATA = {0, SCORE_HEIGHT, WALL_THICKNESS, SCREEN_HEIGHT};
-   private static final int[] RIGHT_WALL_DATA = {SCREEN_WIDTH - WALL_THICKNESS, SCORE_HEIGHT, WALL_THICKNESS, SCREEN_HEIGHT};
+   private static final int[] RIGHT_WALL_DATA = {SCREEN_WIDTH - WALL_THICKNESS, SCORE_HEIGHT,
+                                                WALL_THICKNESS, SCREEN_HEIGHT};
    private static final int[] TOP_WALL_DATA = {0, SCORE_HEIGHT, SCREEN_WIDTH, WALL_THICKNESS};
-   private static final int[] BOTTOM_WALL_DATA = {0, SCREEN_HEIGHT - WALL_THICKNESS, SCREEN_WIDTH, WALL_THICKNESS};
+   private static final int[] BOTTOM_WALL_DATA = {0, SCREEN_HEIGHT - WALL_THICKNESS,
+                                                SCREEN_WIDTH, WALL_THICKNESS};
 
    private static final int GENERIC_BLOCK_WIDTH = 40;
    private static final int GENERIC_BLOCK_HEIGHT = 20;
@@ -122,10 +126,20 @@ public class Game {
        this.sprites.addSprite(s);
    }
 
+   /**
+    * Removes a collidable from the game environment.
+    *
+    * @param c The collidable to remove from the game environment.
+    */
     public void removeCollidable(Collidable c) {
         this.environment.removeCollidable(c);
     }
 
+    /**
+     * Remove a sprite from the sprite collection.
+     *
+     * @param s The sprite to remove from the sprite collection.
+     */
     public void removeSprite(Sprite s) {
         this.sprites.removeSprite(s);
     }

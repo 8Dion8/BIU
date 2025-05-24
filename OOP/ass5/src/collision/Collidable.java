@@ -21,6 +21,7 @@ public interface Collidable {
     * Notify the object that a collision occurred at the specified collisionPoint
     * with a given velocity.
     *
+    * @param hitter the Ball that hit us
     * @param collisionPoint the point at which the collision occurred
     * @param currentVelocity the velocity of the object before the collision
     * @return the new velocity expected after the hit, based on the force

@@ -1,11 +1,12 @@
 package core;
-import java.util.ArrayList;
 
 import collision.Collidable;
 import collision.CollisionInfo;
 import primitive.Line;
 import primitive.Point;
 import primitive.Rectangle;
+
+import java.util.ArrayList;
 
 /**
  * GameEnvironment class represents the environment of the ball.
@@ -31,6 +32,11 @@ public class GameEnvironment {
         this.collidables.add(c);
     }
 
+    /**
+     * Removes the given collidable from the environment.
+     *
+     * @param c The collidable to be removed.
+     */
     public void removeCollidable(Collidable c) {
         this.collidables.remove(c);
     }

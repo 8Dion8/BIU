@@ -6,6 +6,7 @@ import core.GameEnvironment;
 import primitive.Line;
 import primitive.Point;
 import primitive.Velocity;
+
 import biuoop.DrawSurface;
 
 
@@ -14,7 +15,6 @@ import biuoop.DrawSurface;
  * @author Gleb Shvartser 346832892
  */
 public class Ball implements Sprite {
-
     private Point center;
     private int radius;
     private java.awt.Color color;
@@ -127,10 +127,7 @@ public class Ball implements Sprite {
         return this.gameEnvironment;
     }
 
-    /**
-     * Draws the ball on the given DrawSurface.
-     * @param surface the DrawSurface to draw on.
-     */
+    @Override
     public void drawOn(DrawSurface surface) {
         surface.setColor(this.color);
         surface.fillCircle(this.getX(), this.getY(), this.radius);
@@ -166,26 +163,21 @@ public class Ball implements Sprite {
         }
     }
 
-    /**
-     * Updates the ball's position based on its velocity.
-     */
+    @Override
     public void timePassed() {
         this.moveOneStep();
     }
 
-    /**
-     * Adds the ball to the game.
-     * @param game The game to add the ball to.
-     */
+    @Override
     public void addToGame(Game game) {
         game.addSprite(this);
     }
 
+    @Override
     public void removeFromGame(Game game) {
         game.removeSprite(this);
     }
 
-    // Velocity Flipping
     /**
      * Flips the ball's velocity in the x direction.
      */

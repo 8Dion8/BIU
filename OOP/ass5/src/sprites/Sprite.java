@@ -1,5 +1,7 @@
 package sprites;
+
 import core.Game;
+
 import biuoop.DrawSurface;
 
 /**
@@ -21,4 +23,10 @@ public interface Sprite {
     * @param game the game to add the sprite to
     */
    void addToGame(Game game);
+
+   /**
+    * Removes the sprite from the given game.
+    * @param game the game to remove the sprite from
+    */
+   void removeFromGame(Game game);
 }
