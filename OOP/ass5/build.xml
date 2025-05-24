@@ -44,7 +44,7 @@
     </target>
 
     <target name="zip">
-        <zip destfile="ass3.zip">
+        <zip destfile="ass5.zip">
             <!-- Include the src directory -->
             <zipfileset dir="${src.dir}" prefix="${src.dir}"/>
             <!-- Include the lib directory -->

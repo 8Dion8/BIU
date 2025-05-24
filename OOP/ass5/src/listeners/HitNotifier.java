@@ -1,3 +1,5 @@
+package listeners;
+
 public interface HitNotifier {
     // Add hl as a listener to hit events.
     void addHitListener(HitListener hl);

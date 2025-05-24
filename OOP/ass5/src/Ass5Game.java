@@ -1,3 +1,5 @@
+import core.Game;
+
 /**
  * Main class for the game.
  * @author Gleb Shvartser 346832892

@@ -1,5 +1,10 @@
-// a BlockRemover is in charge of removing blocks from the game, as well as keeping count
-// of the number of blocks that remain.
+package listeners;
+
+import core.Game;
+import primitive.Counter;
+import sprites.Ball;
+import sprites.Block;
+
 public class BallRemover implements HitListener {
     private Game game;
     private Counter remainingBalls;

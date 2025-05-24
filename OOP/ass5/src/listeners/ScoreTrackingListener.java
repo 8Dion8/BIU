@@ -1,3 +1,8 @@
+package listeners;
+import primitive.Counter;
+import sprites.Ball;
+import sprites.Block;
+
 public class ScoreTrackingListener implements HitListener {
     private Counter currentScore;
 

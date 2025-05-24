@@ -1,3 +1,4 @@
+package primitive;
 public class Counter {
 
     private int thisCouldHaveBeenAnInt;
@@ -7,15 +8,15 @@ public class Counter {
     }
 
     // add number to current count.
-    void increase(int number) {
+    public void increase(int number) {
         this.thisCouldHaveBeenAnInt += number;
     }
     // subtract number from current count.
-    void decrease(int number) {
+    public void decrease(int number) {
         this.thisCouldHaveBeenAnInt -= number;
     }
     // get current count.
-    int getValue() {
+    public int getValue() {
         return this.thisCouldHaveBeenAnInt;
     }
 }

@@ -1,3 +1,4 @@
+package sprites;
 import biuoop.DrawSurface;
 import java.util.HashSet;
 import java.util.Set;

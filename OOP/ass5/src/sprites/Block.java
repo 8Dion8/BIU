@@ -1,6 +1,16 @@
+package sprites;
+
 import java.awt.Color;
 import java.util.ArrayList;
 
+import collision.Collidable;
+import core.Game;
+import listeners.HitListener;
+import listeners.HitNotifier;
+import primitive.Line;
+import primitive.Point;
+import primitive.Rectangle;
+import primitive.Velocity;
 import biuoop.DrawSurface;
 
 /**

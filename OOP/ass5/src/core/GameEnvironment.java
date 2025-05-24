@@ -1,4 +1,11 @@
+package core;
 import java.util.ArrayList;
+
+import collision.Collidable;
+import collision.CollisionInfo;
+import primitive.Line;
+import primitive.Point;
+import primitive.Rectangle;
 
 /**
  * GameEnvironment class represents the environment of the ball.

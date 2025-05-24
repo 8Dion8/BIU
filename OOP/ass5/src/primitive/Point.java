@@ -1,3 +1,5 @@
+package primitive;
+
 /**
  * Class Point is responsible for defining and managing a point.
  * @author Gleb Shvartser 346832892

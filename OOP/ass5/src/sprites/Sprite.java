@@ -1,3 +1,5 @@
+package sprites;
+import core.Game;
 import biuoop.DrawSurface;
 
 /**

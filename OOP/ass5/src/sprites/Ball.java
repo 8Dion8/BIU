@@ -1,3 +1,11 @@
+package sprites;
+
+import collision.CollisionInfo;
+import core.Game;
+import core.GameEnvironment;
+import primitive.Line;
+import primitive.Point;
+import primitive.Velocity;
 import biuoop.DrawSurface;
 
 

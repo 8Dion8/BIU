@@ -1,8 +1,24 @@
+package core;
+
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 import biuoop.KeyboardSensor;
 import java.awt.Color;
+
+import collision.Collidable;
+import listeners.HitListener;
+import listeners.ScoreTrackingListener;
+import primitive.Counter;
+import primitive.Rectangle;
+import sprites.Ball;
+import listeners.BallRemover;
+import sprites.Block;
+import listeners.BlockRemover;
+import sprites.Paddle;
+import sprites.ScoreIndicator;
+import sprites.Sprite;
+import sprites.SpriteCollection;
 
 /**
  * Game class represents the game.

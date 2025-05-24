@@ -1,5 +1,9 @@
+package sprites;
 import biuoop.DrawSurface;
 import java.awt.Color;
+
+import core.Game;
+import primitive.Counter;
 
 public class ScoreIndicator implements Sprite {
     private Counter counter;

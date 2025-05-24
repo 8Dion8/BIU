@@ -1,3 +1,10 @@
+package collision;
+
+import primitive.Point;
+import primitive.Rectangle;
+import primitive.Velocity;
+import sprites.Ball;
+
 /**
  * Represents a collidable object in the game.
  * @author Gleb Shvartser 346832892
