@@ -32,7 +32,8 @@ public class SpriteCollection {
      * Notifies all sprites in the collection that time has passed.
      */
     public void notifyAllTimePassed() {
-        for (Sprite sprite : this.collection) {
+        Set<Sprite> setCopy = new HashSet<Sprite>(this.collection);
+        for (Sprite sprite : setCopy) {
             sprite.timePassed();
         }
     }

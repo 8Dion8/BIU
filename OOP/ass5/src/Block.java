@@ -74,6 +74,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
         return rectangle;
     }
 
+    public Color getColor() {
+        return this.color;
+    }
+
     /**
     * Notify the object that a collision occurred at the specified collision point with
     * a given velocity. This method calculates and returns the new velocity expected
@@ -84,6 +88,10 @@ public class Block implements Collidable, Sprite, HitNotifier {
     * @return the new velocity of the object after the collision
     */
     public Velocity hit(Ball hitter, Point collisionPoint, Velocity currentVelocity) {
+        if (!ballColorMatch(hitter)) {
+            this.notifyHit(hitter);
+        }
+
         Velocity newVelocity = currentVelocity;
         for (Line edge : rectangle.getEdges()) {
             if (edge.isPointOnLineSegment(collisionPoint)) {
@@ -94,10 +102,6 @@ public class Block implements Collidable, Sprite, HitNotifier {
                 }
                 return newVelocity;
             }
-        }
-
-        if (!ballColorMatch(hitter)) {
-            this.notifyHit(hitter);
         }
 
         return newVelocity;
@@ -147,8 +151,8 @@ public class Block implements Collidable, Sprite, HitNotifier {
     }
 
     public void removeFromGame(Game game) {
-        game.removeSprite(this);
         game.removeCollidable(this);
+        game.removeSprite(this);
     }
 
     public void addHitListener(HitListener hl) {

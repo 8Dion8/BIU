@@ -16,7 +16,8 @@ public class Game {
    private Ball ball1;
    private Ball ball2;
    private Paddle paddle;
-   private Counter counter;
+   private Counter blockCounter;
+   private HitListener listener;
 
 
    private static final int SCREEN_WIDTH = 800;
@@ -75,7 +76,7 @@ public class Game {
        this.sprites = new SpriteCollection();
        this.environment = new GameEnvironment();
        this.sleeper = new Sleeper();
-       this.counter = new Counter();
+       this.blockCounter = new Counter();
    }
 
    /**
@@ -169,6 +170,8 @@ public class Game {
        new Block(TOP_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
        new Block(BOTTOM_WALL_DATA, WALL_COLOR, WALL_COLOR).addToGame(this);
 
+       this.listener = new BlockRemover(this, this.blockCounter);
+
        for (int i = 0; i < BLOCKS_ROWS; i++) {
            for (int j = i; j < TOP_BLOCK_ROW_BLOCK_COUNT; j++) {
                int x = GENERIC_BLOCK_ROW_OFFSET_X + j * GENERIC_BLOCK_WIDTH;
@@ -178,6 +181,7 @@ public class Game {
                    BLOCK_COLORS[i],
                    BLOCK_BORDER_COLOR
                );
+               block.addHitListener(this.listener);
                block.addToGame(this);
            }
        }

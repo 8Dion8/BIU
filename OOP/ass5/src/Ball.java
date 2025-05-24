@@ -79,6 +79,14 @@ public class Ball implements Sprite {
     }
 
     /**
+     * Sets the color of the ball.
+     * @param the color of the ball.
+     */
+    public void setColor(java.awt.Color color) {
+        this.color = color;
+    }
+
+    /**
      * Gets the velocity of the ball.
      * @return the velocity of the ball.
      */
