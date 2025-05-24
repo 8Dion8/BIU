@@ -183,6 +183,7 @@ public class Game {
                );
                block.addHitListener(this.listener);
                block.addToGame(this);
+               this.blockCounter.increase(1);
            }
        }
    }
@@ -200,6 +201,11 @@ public class Game {
             this.sprites.drawAllOn(d);
             this.gui.show(d);
             this.sprites.notifyAllTimePassed();
+
+            if (this.blockCounter.getValue() == 0) {
+                System.out.println("GOTY 2025 candidate, seeking investors");
+                this.gui.close();
+            }
 
             // timing
             long usedTime = System.currentTimeMillis() - startTime;
