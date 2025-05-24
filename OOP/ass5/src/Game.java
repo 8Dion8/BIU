@@ -16,6 +16,7 @@ public class Game {
    private Ball ball1;
    private Ball ball2;
    private Paddle paddle;
+   private Counter counter;
 
 
    private static final int SCREEN_WIDTH = 800;
@@ -74,6 +75,7 @@ public class Game {
        this.sprites = new SpriteCollection();
        this.environment = new GameEnvironment();
        this.sleeper = new Sleeper();
+       this.counter = new Counter();
    }
 
    /**
