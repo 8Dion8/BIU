@@ -19,8 +19,10 @@ public class Game {
    private Paddle paddle;
    private Counter ballCounter;
    private Counter blockCounter;
+   private Counter scoreCounter;
    private HitListener ballListener;
    private HitListener blockListener;
+   private HitListener scoreListener;
 
 
    private static final int SCREEN_WIDTH = 800;
@@ -79,8 +81,6 @@ public class Game {
        this.sprites = new SpriteCollection();
        this.environment = new GameEnvironment();
        this.sleeper = new Sleeper();
-       this.blockCounter = new Counter();
-       this.ballCounter = new Counter();
    }
 
    /**
@@ -114,6 +114,12 @@ public class Game {
     * and add them to the game.
     */
    public void initialize() {
+       this.blockCounter = new Counter();
+       this.ballCounter = new Counter();
+       this.scoreCounter = new Counter();
+
+       this.scoreListener = new ScoreTrackingListener(scoreCounter);
+
        this.gui = new GUI("Arkanoid but the budget got cut halfway through", SCREEN_WIDTH, SCREEN_HEIGHT);
        this.keyboard = gui.getKeyboardSensor();
 
@@ -184,6 +190,7 @@ public class Game {
                    BLOCK_BORDER_COLOR
                );
                block.addHitListener(this.blockListener);
+               block.addHitListener(this.scoreListener);
                block.addToGame(this);
                this.blockCounter.increase(1);
            }
@@ -205,6 +212,7 @@ public class Game {
             this.sprites.notifyAllTimePassed();
 
             if (this.blockCounter.getValue() == 0) {
+                this.scoreCounter.increase(100);
                 System.out.println("GOTY 2025 candidate, seeking investors");
                 this.gui.close();
             }
